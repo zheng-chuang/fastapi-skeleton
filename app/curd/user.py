@@ -1,21 +1,17 @@
-from typing import Optional
-
 from sqlmodel import Session, select
-
-from app import models
-from app.models import User
+from app import models, schemas
 from app.utils.auth import get_password_hash
 
 
 def get_user_by_email(*, db: Session, email: str):
-    query = select(User).where(User.email == email)
+    query = select(models.User).where(models.User.email == email)
     db_user = db.exec(query).first()
     if db_user:
         return db_user
     return None
 
 
-def create_user(*, db: Session, user_create: models.UserCreate):
+def create_user(*, db: Session, user_create: schemas.user.UserCreate):
     user = models.User.model_validate(
         user_create,
         update={

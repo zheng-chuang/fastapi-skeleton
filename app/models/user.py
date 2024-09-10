@@ -10,10 +10,3 @@ class User(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
 
 
-class UserCreate(BaseModel):
-    email: EmailStr
-    password: str
-
-
-class UserQuery(UserCreate):
-    id: Optional[int] = None

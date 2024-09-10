@@ -1,4 +1,4 @@
-from .user import User, UserCreate, UserQuery
+from .user import User
 from .singer import Singer
 from sqlmodel import SQLModel
 

@@ -2,14 +2,14 @@ from typing import Annotated
 
 from fastapi import APIRouter, HTTPException, status, Body
 
-from app import curd, models
+from app import curd, models, schemas
 from app.routers.deps import SessionDep
 
 router = APIRouter(prefix="/api")
 
 
 @router.post("/register", response_model=models.User)
-async def register(db: SessionDep, user_create: Annotated[models.UserCreate, Body()]):
+async def register(db: SessionDep, user_create: Annotated[schemas.user.UserCreate, Body()]):
     user = curd.get_user_by_email(db=db, email=user_create.email)
     if user:
         raise HTTPException(
