@@ -1,3 +1,5 @@
+-i https://pypi.tuna.tsinghua.edu.cn/simple
+
 sqlmodel~=0.0.21
 python-dotenv==1.0.1
 pydantic-settings~=2.4.0

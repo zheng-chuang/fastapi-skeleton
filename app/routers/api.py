@@ -1,14 +1,20 @@
-from fastapi import APIRouter
+from typing import Annotated
 
+from fastapi import APIRouter, HTTPException, status, Body
+
+from app import curd, models
 from app.routers.deps import SessionDep
-from app.schemas import user as user_schema
 
-router = APIRouter()
-
+router = APIRouter(prefix="/api")
 
 
-
-@router.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
-
+@router.post("/register", response_model=models.User)
+async def register(db: SessionDep, user_create: Annotated[models.UserCreate, Body()]):
+    user = curd.get_user_by_email(db=db, email=user_create.email)
+    if user:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Email already registered",
+        )
+    user = curd.create_user(db=db, user_create=user_create)
+    return user
