@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:postgresql://localhost:5432/music</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="music@zheng-chuang.synology.me" uuid="1f843eb6-ed6f-4a64-a30f-19a1afbafa39">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://zheng-chuang.synology.me:5433/music</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

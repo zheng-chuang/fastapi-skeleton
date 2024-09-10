@@ -1,4 +1,5 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from pathlib import Path
 
 
 class Settings(BaseSettings):
@@ -6,6 +7,8 @@ class Settings(BaseSettings):
     SECRET_KEY: str = "your-secret-key"
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+
+    TEMPLATES_PATH: str = str(Path(__file__).parent.parent / "templates")
 
     model_config = SettingsConfigDict(
         env_file=".env",
